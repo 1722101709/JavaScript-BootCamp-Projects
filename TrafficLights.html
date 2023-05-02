@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+ <title>Javascript</title> 
+</head> 
+ 
+<style>
+body {
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+} 
+ .lights { 
+  display: flex; 
+  background: black; 
+  width: 200px; 
+  aspect-ratio: 1/3; 
+  justify-content: space-evenly;
+  flex-direction: column-reverse;
+  align-items: center; 
+  border-radius: 30%; 
+ } 
+ span{ 
+  width: 150px; 
+  aspect-ratio: 1/1; 
+  border-radius: 50%; 
+ } 
+ .lights > span{ 
+  opacity: 0.2; 
+ } 
+ .red{ 
+  background: red; 
+ } 
+ .orange{ 
+  background: orange; 
+ } 
+ .green{ 
+  background: #0DAD0D; 
+ } 
+ .time{ 
+  font-size: 35px; 
+ } 
+ #count{ 
+  font-size: 50px; 
+ } 
+ .lights > .light{ 
+  opacity: 1; 
+ } 
+ .message{ 
+  font-size: 70px; 
+  display: block; 
+ }
+ .info{
+    width: 20%;
+ }
+ 
+</style> 
+ 
+<body onload="init()"> 
+ <div class="lights"> 
+  <span class="red"></span> 
+  <span class="orange"></span> 
+  <span class="green light"></span> 
+ </div> 
+ 
+ <div class="info">
+     <span class="time"> 
+      Time left : <span id="count">10</span> 
+     </span> 
+     
+     <span class="message" style="color: green;">Go!!!!!!!</span> 
+ </div>
+ 
+ 
+</body> 
+ 
+<script> 
+ const delay = time => new Promise((resolve, reject) => { 
+  setTimeout(() => resolve(), time)}); 
+ 
+ async function init(){ 
+ 
+  let ele = document.getElementById("count"); 
+ 
+  for(let i = 10; i >= 0; i--){ 
+ 
+   await delay(1000); 
+   ele.innerHTML = i; 
+  } 
+ 
+  let green = document.getElementsByClassName('green')[0];
+  let red = document.getElementsByClassName('red')[0]; 
+  let message = document.getElementsByClassName('message')[0]; 
+
+  if (green.classList.length === 2){ 
+ 
+   green.classList.remove('light'); 
+   red.classList.add('light'); 
+ 
+   message.innerHTML = "STOP !!!!!!!" 
+   message.style.color = "red"; 
+ 
+  } 
+  else{ 
+   red.classList.remove('light'); 
+   green.classList.add('light'); 
+ 
+   message.innerHTML = "GO !!!!!!!" 
+   message.style.color = "green"; 
+  } 
+ 
+  init(); 
+ } 
+</script> 
+</html>
